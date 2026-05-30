@@ -1,6 +1,6 @@
 // ============================================================
 // SCRIPT 1 — Descobrir o APP_ID do bd-candidatos
-// Rode UMA vez. Pegue o número no log e cole no Script 2.
+// Rode UMA vez. Cole o resultado no Script 2.
 // ============================================================
 const WORKSPACE_URL = "https://podio.com/fluxo-consultoria-2c2quifl81/pame-261";
 const APP_SLUG = "bd-candidatos";
@@ -13,7 +13,7 @@ function descobrirAppID() {
   const spaceUrl = "https://api.podio.com/space/url?url=" + encodeURIComponent(WORKSPACE_URL);
   const spaceResp = UrlFetchApp.fetch(spaceUrl, { method: "get", headers: authHeader, muteHttpExceptions: true });
   const spaceData = JSON.parse(spaceResp.getContentText());
-  if (!spaceData.space_id) { Logger.log("❌ Workspace não encontrado"); return; }
+  if (!spaceData.space_id) { Logger.log("❌ Workspace não encontrado: " + spaceResp.getContentText()); return; }
 
   // Apps do workspace
   const appsResp = UrlFetchApp.fetch("https://api.podio.com/app/space/" + spaceData.space_id + "/", {

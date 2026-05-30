@@ -39,6 +39,6 @@ function descobrirCamposEItems() {
   });
 
   if (data.total > data.items.length) {
-    Logger.log("\n⚠️  Tem mais items que o limite. Pagine com 'offset' se precisar.");
+    Logger.log("Tem mais items que o limite. Pagine com 'offset' se precisar.");
   }
 }

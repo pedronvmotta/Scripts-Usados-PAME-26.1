@@ -32,7 +32,7 @@ function aoEditarPlanilha(e) {
   try {
     token = getPodioToken();
   } catch (err) {
-    Logger.log("❌ Token falhou: " + err.message);
+    Logger.log("Token falhou: " + err.message);
     return;
   }
 

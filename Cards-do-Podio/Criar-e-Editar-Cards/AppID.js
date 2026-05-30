@@ -13,7 +13,7 @@ function descobrirAppID() {
   const spaceUrl = "https://api.podio.com/space/url?url=" + encodeURIComponent(WORKSPACE_URL);
   const spaceResp = UrlFetchApp.fetch(spaceUrl, { method: "get", headers: authHeader, muteHttpExceptions: true });
   const spaceData = JSON.parse(spaceResp.getContentText());
-  if (!spaceData.space_id) { Logger.log("❌ Workspace não encontrado: " + spaceResp.getContentText()); return; }
+  if (!spaceData.space_id) { Logger.log("Workspace não encontrado: " + spaceResp.getContentText()); return; }
 
   // Apps do workspace
   const appsResp = UrlFetchApp.fetch("https://api.podio.com/app/space/" + spaceData.space_id + "/", {
@@ -22,8 +22,8 @@ function descobrirAppID() {
   const apps = JSON.parse(appsResp.getContentText());
   const appAlvo = apps.find(function(app) { return app.url_label === APP_SLUG; });
 
-  if (!appAlvo) { Logger.log("❌ App '" + APP_SLUG + "' não encontrado."); return; }
-  Logger.log("🎯 APP_ID do " + APP_SLUG + ": " + appAlvo.app_id);
+  if (!appAlvo) { Logger.log("App '" + APP_SLUG + "' não encontrado."); return; }
+  Logger.log("APP_ID do " + APP_SLUG + ": " + appAlvo.app_id);
 }
 
 // ============================================================

@@ -89,10 +89,10 @@ def estimar_tempo(total_mensagens, tempo_por_msg):
 
 #vai gerar uma sequência aleatória pequena e discreta pra tornar a mensagem única, ele escolhe uma tag entre letras e números e retorna isso formatado entre colchetes 
 
-def gerar_id_aleatorio():
-    caracteres = "abcdefghijklmnopqrstuvwxyz0123456789"
-    codigo = "".join(random.choice(caracteres) for _ in range(3))
-    return f"\n\n[Ref:{codigo}]"
+def gerar_emoji_aleatorio():
+    emojis = [
+    " 🚀", " 💥", " 🎯", " 🌟", " 📢", " 💡", " 💎", " 📈"]
+    return random.choice(emojis)
 
 def enviar_mensagens():
     print("Iniciando função...")
@@ -175,7 +175,7 @@ def enviar_mensagens():
                 # personaliza a mensagem
                 mensagem_final = MENSAGEM.format(nome=nome)
                 #colocando minha bobeira random (o "id" da mensagem)
-                mensagem_final += gerar_id_aleatorio()
+                mensagem_final += gerar_emoji_aleatorio()
                 
                 print(f"[{len(enviados) + 1}/{len(df)}] Enviando para {nome} ({telefone})...")
                 

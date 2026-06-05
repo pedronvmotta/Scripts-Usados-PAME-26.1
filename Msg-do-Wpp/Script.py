@@ -28,6 +28,7 @@ Isso é um teste"""
 
 # tempo de espera entre mensagens (em segundos)
 # recomendado: minimo 15-20 segundos para evitar bloqueio
+#IMPORTANTE: mudei essa parte pra um tempo aleatório usando a biblioteca random
 TEMPO_ESPERA = 20
 
 # tempo de espera apos enviar cada mensagem (segundos)

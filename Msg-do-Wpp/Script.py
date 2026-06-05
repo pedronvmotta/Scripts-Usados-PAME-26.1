@@ -92,7 +92,7 @@ def estimar_tempo(total_mensagens, tempo_por_msg):
 def gerar_id_aleatorio():
     caracteres = "abcdefghijklmnopqrstuvwxyz0123456789"
     codigo = "".join(random.choice(caracteres) for _ in range(3))
-    return f"\n\n[{codigo}]"
+    return f"\n\n[Ref:{codigo}]"
 
 def enviar_mensagens():
     print("Iniciando função...")

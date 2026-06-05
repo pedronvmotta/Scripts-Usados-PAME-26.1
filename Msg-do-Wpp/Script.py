@@ -12,7 +12,7 @@ import random
 # ============================================
 
 # caminho do arquivo excel (pode ser .xlsx ou .csv)
-ARQUIVO_PLANILHA = "teste.csv"
+ARQUIVO_PLANILHA = "Planilha-mensagens-Fit-cultural.csv"
 
 # nome da coluna que contem os numeros de telefone
 COLUNA_TELEFONE = "Telefone (somente números)"
@@ -22,9 +22,19 @@ COLUNA_NOME = "Nome completo"
 
 # mensagem a ser enviada
 # use {nome} se quiser personalizar com o nome da pessoa
-MENSAGEM = """Olá {nome}! 
+MENSAGEM = """Olá {nome}! Tudo bem?
 
-Isso é um teste"""
+Meu nome é Camilla e eu sou uma das responsáveis pelo PAME 26.1 da Fluxo
+
+Passando para lembrar que a nossa primeira etapa do PAME, o Fit Cultural, já está acontecendo! Essa é a nossa chance de te conhecer melhor, entender seu perfil e ver como você se conecta com a Fluxo.
+
+Vi aqui que você ainda não respondeu ao formulário. O prazo final é até Sábado (06/06).
+
+O link para responder é esse aqui: https://forms.gle/TDiMG4XD1QVvjyjy8
+
+Qualquer dúvida ou problema com o link, pode me mandar mensagem por aqui. Estamos ansiosos para te conhecer melhor!
+
+"""
 
 # tempo de espera entre mensagens (em segundos)
 # recomendado: minimo 15-20 segundos para evitar bloqueio

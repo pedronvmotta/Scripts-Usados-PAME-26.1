@@ -28,7 +28,7 @@ Meu nome é Camilla e eu sou uma das responsáveis pelo PAME 26.1 da Fluxo
 
 Passando para lembrar que a nossa primeira etapa do PAME, o Fit Cultural, já está acontecendo! Essa é a nossa chance de te conhecer melhor, entender seu perfil e ver como você se conecta com a Fluxo.
 
-Vi aqui que você ainda não respondeu ao formulário. O prazo final é até Sábado (06/06).
+Vi aqui que você ainda não respondeu ao formulário. O prazo final é até Terça-Feira (09/06).
 
 O link para responder é esse aqui: https://forms.gle/TDiMG4XD1QVvjyjy8
 
@@ -77,16 +77,24 @@ def registrar_log(mensagem):
     print(mensagem)
 
 def formatar_telefone(numero):
-    """formata o numero para o padrao internacional +55"""
+    """formata o numero para o padrao internacional +55 e trata o digito 9"""
     numero = str(numero).strip()
     # remove caracteres especiais
     numero = ''.join(filter(str.isdigit, numero))
     
-    # adiciona +55 se nao tiver
-    if not numero.startswith('55'):
-        numero = '55' + numero
+    # Se já começar com 55, remove temporariamente para tratar o miolo
+    if numero.startswith('55') and len(numero) > 11:
+        numero = numero[2:]
     
-    return '+' + numero
+    # Se o número ficou com 11 dígitos (ex: 21976099651)
+    if len(numero) == 11:
+        ddd = int(numero[:2])
+        # A maioria dos DDDs do Brasil (especialmente de 11 a 28, que inclui RJ e SP)
+        # usa o formato de 10 dígitos no banco de dados do WhatsApp
+        if 11 <= ddd <= 28:
+            numero = numero[:2] + numero[3:] # Remove o terceiro dígito (o 9)
+
+    return '+55' + numero
 
 def estimar_tempo(total_mensagens, tempo_por_msg):
     """estima o tempo total de envio"""

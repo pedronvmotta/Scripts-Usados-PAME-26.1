@@ -18,7 +18,7 @@ function combinarDataHora(data, hora) {
 
 function envioAgenda() {
   const sheet = SpreadsheetApp.getActive().getSheetByName("Horários");
-  const calendar = CalendarApp.getCalendarById("c_6226ef363550325a08cfcba0ef8ac1813346573dcb22a116bec613592ec188c7@group.calendar.google.com");
+  const calendar = CalendarApp.getCalendarById("8eb0b6a9bea03527a7b8070510d4cc3c9aa941a577a598d599dc84f8e2e0796d@group.calendar.google.com");
   
   let values = sheet.getDataRange().getValues();
   

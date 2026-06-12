@@ -28,7 +28,7 @@ Meu nome é Camilla e eu sou uma das responsáveis pelo PAME 26.1 da Fluxo
 
 Passando para lembrar que a nossa primeira etapa do PAME, o Fit Cultural, já está acontecendo! Essa é a nossa chance de te conhecer melhor, entender seu perfil e ver como você se conecta com a Fluxo.
 
-Vi aqui que você ainda não respondeu ao formulário. O prazo final é até Terça-Feira (09/06).
+Vi aqui que você ainda não respondeu ao formulário. O prazo final é até HOJE (09/06).
 
 O link para responder é esse aqui: https://forms.gle/TDiMG4XD1QVvjyjy8
 

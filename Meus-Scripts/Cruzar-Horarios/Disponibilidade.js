@@ -17,13 +17,13 @@ function gerarDisponibilidade() {
 
   const header = rows[0].map(h => String(h || '').trim());
   const idxCand = header.indexOf('Candidato');
-  const idxDia = header.indexOf('Dia');
+  const idxDia = header.indexOf('Data');
   const idxHora = header.indexOf('Horário');
   const idxMembro = header.indexOf('Membro');
   const idxCargo = header.indexOf('Cargo');
 
   if (idxCand < 0 || idxDia < 0 || idxHora < 0 || idxMembro < 0) {
-    throw new Error('Cabeçalho não tem Candidato/Dia/Horário/Membro');
+    throw new Error('Cabeçalho não tem Candidato/Data/Horário/Membro');
   }
 
   const grupos = new Map();
@@ -50,7 +50,7 @@ function gerarDisponibilidade() {
     return parseInt(a.hora, 10) - parseInt(b.hora, 10);
   });
 
-  const outRows = [['Candidato', 'Dia', 'Horário', 'Membros disponíveis']];
+  const outRows = [['Candidato', 'Data', 'Horário', 'Membros disponíveis']];
   for (const g of arr) {
     outRows.push([g.cand, g.dia, g.hora, g.membros.join(', ')]);
   }

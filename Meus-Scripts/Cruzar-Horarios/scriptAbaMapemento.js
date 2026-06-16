@@ -7,6 +7,7 @@ function onOpen() {
     .createMenu('Atualizar abas')
     .addItem('Atualizar aba mapeamento', 'cruzarHorarios')
     .addItem('Atualizar aba disponibilidade', 'gerarDisponibilidade')
+    .addItem('Atualizar aba horários', 'cruzarHorariosPrincipal')
     .addToUi();
 }
 

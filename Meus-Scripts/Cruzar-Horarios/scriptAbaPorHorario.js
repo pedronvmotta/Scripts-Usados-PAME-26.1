@@ -52,36 +52,32 @@ function cruzarHorariosPrincipal() {
   for (const slot of slotsOrdenados) {
     const candList = slot.candidatos.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
     const memList = slot.membros.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
-    for (const cand of candList) {
-      for (const m of memList) {
-        novasLinhas.push([slot.day, slot.hour, cand.name, m.name, m.extra, m.email]);
-      }
-    }
+    if (candList.length === 0 || memList.length === 0) continue;
+    const candNames = candList.map(c => c.name).join(', ');
+    memList.forEach((m, i) => {
+      novasLinhas.push([slot.day, slot.hour, i === 0 ? candNames : '', m.name, m.extra, m.email]);
+    });
   }
 
   let abaSaida = ssSaida.getSheetByName(ABA_POR_HORARIO);
   if (!abaSaida) abaSaida = ssSaida.insertSheet(ABA_POR_HORARIO);
 
-  const existentes = lerChavesPorHorario(abaSaida);
-  const paraAdicionar = novasLinhas.filter(
-    r => !existentes.chaves.has(`${r[0]}|${r[1]}|${r[2]}|${r[3]}`)
-  );
+  abaSaida.clearContents();
+  const tudo = [HEADER, ...novasLinhas];
 
-  if (!existentes.temHeader) {
-    const tudo = [HEADER, ...paraAdicionar];
-    if (paraAdicionar.length > 0) {
-      formatarTextoPorHorario(abaSaida, 2, paraAdicionar.length);
-    }
-    abaSaida.getRange(1, 1, tudo.length, HEADER.length).setValues(tudo);
-    abaSaida.setFrozenRows(1);
-  } else if (paraAdicionar.length > 0) {
-    const startRow = abaSaida.getLastRow() + 1;
-    formatarTextoPorHorario(abaSaida, startRow, paraAdicionar.length);
-    abaSaida.getRange(startRow, 1, paraAdicionar.length, HEADER.length).setValues(paraAdicionar);
+  const maxAtual = abaSaida.getMaxRows();
+  if (tudo.length > maxAtual) {
+    abaSaida.insertRowsAfter(maxAtual, tudo.length - maxAtual);
   }
 
+  abaSaida.getRange(1, 1, tudo.length, HEADER.length).setValues(tudo);
+  if (novasLinhas.length > 0) {
+    formatarTextoPorHorario(abaSaida, 2, novasLinhas.length);
+  }
+  abaSaida.setFrozenRows(1);
+
   ssSaida.toast(
-    `+${paraAdicionar.length} novos | total na aba: ${existentes.chaves.size + paraAdicionar.length}`,
+    `${novasLinhas.length} linhas escritas em "${ABA_POR_HORARIO}"`,
     'cruzarHorariosPorSlot concluído',
     8
   );
@@ -95,25 +91,3 @@ function formatarTextoPorHorario(aba, startRow, numRows) {
   }
 }
 
-function lerChavesPorHorario(aba) {
-  const dados = aba.getDataRange().getValues();
-  const chaves = new Set();
-  if (dados.length === 0 || String(dados[0][0] || '').trim() !== 'Data') {
-    return { chaves, temHeader: false };
-  }
-  const hdr = dados[0].map(h => String(h || '').trim());
-  const iDia = hdr.indexOf('Data');
-  const iHora = hdr.indexOf('Horário');
-  const iCand = hdr.indexOf('Candidato');
-  const iMembro = hdr.indexOf('Membro');
-  for (let r = 1; r < dados.length; r++) {
-    const row = dados[r];
-    const dia = normalizarDia(row[iDia]);
-    const hora = normalizarHora(row[iHora]);
-    const cand = String(row[iCand] || '').trim();
-    const membro = String(row[iMembro] || '').trim();
-    if (!dia && !hora && !cand && !membro) continue;
-    chaves.add(`${dia}|${hora}|${cand}|${membro}`);
-  }
-  return { chaves, temHeader: true };
-}

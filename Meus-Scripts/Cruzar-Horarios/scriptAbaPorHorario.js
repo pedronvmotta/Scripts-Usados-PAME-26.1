@@ -62,19 +62,33 @@ function cruzarHorariosPrincipal() {
   let abaSaida = ssSaida.getSheetByName(ABA_POR_HORARIO);
   if (!abaSaida) abaSaida = ssSaida.insertSheet(ABA_POR_HORARIO);
 
+  const filtroExistente = abaSaida.getFilter();
+  if (filtroExistente) filtroExistente.remove();
+  if (abaSaida.getFrozenRows() > 0) abaSaida.setFrozenRows(0);
+
   abaSaida.clearContents();
+  const headerRange = abaSaida.getRange(1, 1, 1, abaSaida.getMaxColumns());
+  if (headerRange.getMergedRanges().length > 0) headerRange.breakApart();
+
   const tudo = [HEADER, ...novasLinhas];
 
   const maxAtual = abaSaida.getMaxRows();
   if (tudo.length > maxAtual) {
     abaSaida.insertRowsAfter(maxAtual, tudo.length - maxAtual);
+    SpreadsheetApp.flush();
   }
+
+  try { abaSaida.setFrozenRows(1); } catch (e) { /* quirk do Apps Script após insertRowsAfter */ }
 
   abaSaida.getRange(1, 1, tudo.length, HEADER.length).setValues(tudo);
   if (novasLinhas.length > 0) {
     formatarTextoPorHorario(abaSaida, 2, novasLinhas.length);
   }
-  abaSaida.setFrozenRows(1);
+
+  if (abaSaida.getFrozenRows() === 0) {
+    SpreadsheetApp.flush();
+    try { abaSaida.setFrozenRows(1); } catch (e) { /* já tentamos antes da escrita */ }
+  }
 
   ssSaida.toast(
     `${novasLinhas.length} linhas escritas em "${ABA_POR_HORARIO}"`,

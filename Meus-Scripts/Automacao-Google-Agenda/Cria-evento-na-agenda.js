@@ -1,6 +1,36 @@
 function onOpen(e){
   const ui = SpreadsheetApp.getUi();
-  ui.createMenu("Executar").addItem("Criar/atualizar eventos","envioAgenda").addToUi();
+  ui.createMenu("Executar").addItem("Jogar na agenda dos membros","envioAgenda").addToUi();
+}
+
+function lerCandidato(dia, hora){
+  const abaCandidatos = SpreadsheetApp.getActive().getSheetByName("Alocação - Candidatos");
+  const valoresCandidatos = abaCandidatos.getDataRange().getValues();
+
+  const colunasNomes = [4, 9, 14, 19]; // E, J, O, T
+  const alvo = combinarDataHora(dia, hora).getTime(); // momento que estamos procurando
+
+  const nomes = [];
+
+  for (let i = 3; i < valoresCandidatos.length; i++){
+    const dataAloc = valoresCandidatos[i][2]; // coluna C
+    const horaAloc = valoresCandidatos[i][3]; // coluna D
+
+    if (dataAloc === "" || horaAloc === "") continue; // pula linhas vazias
+
+    const momentoAloc = combinarDataHora(dataAloc, horaAloc).getTime();
+
+    if (momentoAloc === alvo){
+      for (const col of colunasNomes){
+        const nome = valoresCandidatos[i][col];
+        if (nome !== "" && nome != null){
+          nomes.push(nome);
+        }
+      }
+    }
+  }
+
+  return nomes.join("\n");
 }
 
 function combinarDataHora(data, hora) {
@@ -40,13 +70,14 @@ function envioAgenda() {
     let exists = values[i][10];
     
     if (validation == "Atualizar"){
+      let candidatos = lerCandidato(dia, hora);   // <-- aqui, por evento
       let dateI = combinarDataHora(dia, hora);
       let dateF = new Date(dateI.getTime() + 60*60*1000);
       
       // Tratamento original das strings de e-mail e descrição
       let listaConvidados = `${email1},${email2},${email3}`;
-      let txtDescricao = `Dinâmica marcada com ${email1}, ${email2}, ${email3}` + "\n\n" + 
-                         `Candidatos:` + "\n" + 
+      let txtDescricao = `Dinâmica marcada com ${email1}, ${email2}, ${email3}` + "\n\n" +
+                         `Candidatos:` + "\n" + candidatos + "\n\n" +
                          `Roteiro da dinâmica: ${linkDoAnexo}`;
 
       let event;
@@ -70,7 +101,7 @@ function envioAgenda() {
       // Se não existia ou se o bloco de atualizar falhou, cria um novo do zero
       if (!eventAltered){
         event = calendar.createEvent(
-          "Dinâmica em grupo",
+          "Dinâmica em grupo - PAME",
           dateI,
           dateF,
           {

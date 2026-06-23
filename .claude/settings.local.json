@@ -3,7 +3,11 @@
     "allow": [
       "Bash(node cruzarHorarios.js)",
       "Bash(awk -F',' 'NR>1 {print $1}' \"C:/Users/User/Desktop/PAME-REPO/Meus-Scripts/Cruzar-Horarios/Cruzamento de horários - Dinâmicas - Mapeamento por horário.csv\")",
-      "Bash(awk -F, 'NR>1 { for \\(i=17; i<=21; i++\\) if \\($i != \"\" && $i != \"\\\\\"\\\\\"\"\\) print NR\": col \"i\" = \"$i; }' 'C:/Users/User/Desktop/PAME-REPO/Meus-Scripts/Cruzar-Horarios/Candidatos - Disponibilidade de horários \\(respostas\\) - Respostas ao formulário 1 \\(1\\).csv')"
+      "Bash(awk -F, 'NR>1 { for \\(i=17; i<=21; i++\\) if \\($i != \"\" && $i != \"\\\\\"\\\\\"\"\\) print NR\": col \"i\" = \"$i; }' 'C:/Users/User/Desktop/PAME-REPO/Meus-Scripts/Cruzar-Horarios/Candidatos - Disponibilidade de horários \\(respostas\\) - Respostas ao formulário 1 \\(1\\).csv')",
+      "Bash(python -c ' *)",
+      "Bash(python gerar_marcacoes.py)",
+      "Bash(python -X utf8 gerar_marcacoes.py)",
+      "Bash(python -X utf8 -c ' *)"
     ]
   }
 }

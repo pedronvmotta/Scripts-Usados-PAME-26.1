@@ -1,0 +1,44 @@
+Slots no Mapeamento: 61
+Slots já marcados (preservados): 20
+Novas dinâmicas geradas: 12
+Slots pulados (sem recursos suficientes): 31
+
+Prioritários encaixados como 5º candidato:
+  Tiago de Góis Paz -> 25/06/2026 15:00:00
+
+Detalhe dos pulados:
+  16/06 11h: candidatos insuficientes (precisa 4 não-usados)
+  16/06 9h: candidatos insuficientes (precisa 4 não-usados)
+  16/06 13h: candidatos insuficientes (precisa 4 não-usados)
+  15/06 14h: candidatos insuficientes (precisa 4 não-usados)
+  15/06 15h: candidatos insuficientes (precisa 4 não-usados)
+  15/06 11h: candidatos insuficientes (precisa 4 não-usados)
+  15/06 13h: candidatos insuficientes (precisa 4 não-usados)
+  17/06 8h: membros insuficientes (precisa 1 fac + 2 obs); candidatos insuficientes (precisa 4 não-usados)
+  17/06 9h: candidatos insuficientes (precisa 4 não-usados)
+  17/06 15h: candidatos insuficientes (precisa 4 não-usados)
+  18/06 14h: candidatos insuficientes (precisa 4 não-usados)
+  01/07 13h: candidatos insuficientes (precisa 4 não-usados)
+  24/06 9h: candidatos insuficientes (precisa 4 não-usados)
+  02/07 13h: candidatos insuficientes (precisa 4 não-usados)
+  02/07 15h: candidatos insuficientes (precisa 4 não-usados)
+  26/06 15h: candidatos insuficientes (precisa 4 não-usados)
+  03/07 14h: candidatos insuficientes (precisa 4 não-usados)
+  03/07 13h: candidatos insuficientes (precisa 4 não-usados)
+  25/06 14h: candidatos insuficientes (precisa 4 não-usados)
+  02/07 11h: candidatos insuficientes (precisa 4 não-usados)
+  25/06 13h: candidatos insuficientes (precisa 4 não-usados)
+  30/06 13h: candidatos insuficientes (precisa 4 não-usados)
+  29/06 14h: candidatos insuficientes (precisa 4 não-usados)
+  29/06 13h: candidatos insuficientes (precisa 4 não-usados)
+  03/07 11h: candidatos insuficientes (precisa 4 não-usados)
+  29/06 11h: candidatos insuficientes (precisa 4 não-usados)
+  29/06 15h: candidatos insuficientes (precisa 4 não-usados)
+  30/06 11h: candidatos insuficientes (precisa 4 não-usados)
+  30/06 15h: candidatos insuficientes (precisa 4 não-usados)
+  26/06 11h: candidatos insuficientes (precisa 4 não-usados)
+  26/06 13h: candidatos insuficientes (precisa 4 não-usados)
+
+Novos arquivos gerados:
+  Horários - Atualizado.csv
+  Alocação - Candidatos - Atualizado.csv

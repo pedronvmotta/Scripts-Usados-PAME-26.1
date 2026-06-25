@@ -7,7 +7,9 @@
       "Bash(python -c ' *)",
       "Bash(python gerar_marcacoes.py)",
       "Bash(python -X utf8 gerar_marcacoes.py)",
-      "Bash(python -X utf8 -c ' *)"
+      "Bash(python -X utf8 -c ' *)",
+      "Bash(awk -F',' 'NR>1 {print $1}' \"Meus-Scripts/Cruzar-Horarios/Cruzamento de horários - Dinâmicas - Mapeamento.csv\")",
+      "Bash(python3 *)"
     ]
   }
 }

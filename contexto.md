@@ -2,13 +2,39 @@
 
 ## Regras de montagem de grupo
 
-- **Tamanho do grupo:** sempre **4 candidatos por dinâmica**.
-- **Grupos paralelos:** é permitido ter mais de uma dinâmica no mesmo `Dia` + `Horário` (já existe em vários slots da planilha — ex.: 22/06 8h, 22/06 11h, 22/06 13h, 22/06 15h). Quando o slot já tiver um grupo cheio, criar nova linha para um 2º grupo paralelo se houver candidatos disponíveis.
-- Ao sugerir candidatos para um slot, montar grupos de 4 não-alocados disponíveis (planilha (3)). Cada candidato só pode estar em uma dinâmica.
+- **Tamanho preferencial:** 4 candidatos por dinâmica.
+- **Grupo de 3 é aceitável** quando não dá pra fechar 4 com não-alocados disponíveis (regra flexibilizada em 2026-06-25). Preferível alocar 3 do que deixar candidato de fora por rigidez.
+- **5º candidato como exceção:** quando um candidato não-alocado tem disponibilidade num slot que já tem grupo cheio (4 candidatos), encaixar como 5º (planilha tem coluna `Candidato 5`). Usar para "salvar" candidatos que ficariam sem grupo formável. Validado em 2026-06-25.
+- **Grupos paralelos:** é permitido ter mais de uma dinâmica no mesmo `Dia` + `Horário` (já existe em vários slots da planilha). Quando o slot já tiver um grupo cheio, criar nova linha para um 2º grupo paralelo se houver candidatos disponíveis.
+- Ao sugerir candidatos para um slot, priorizar grupos de 4 não-alocados; aceitar 3 quando 4 não for viável; usar 5º como exceção pra encaixar candidatos órfãos. Cada candidato só pode estar em uma dinâmica.
+- **Sempre listar alternativas:** ao sugerir um grupo para um slot, junto com a sugestão principal **sempre retornar a lista completa de outros candidatos que também podem nesse horário** (não-alocados disponíveis + remarcáveis), pra que o usuário possa trocar. Validado em 2026-06-25.
+- **NUNCA marcar dinâmica direto na planilha sem validação prévia:** toda marcação de dinâmica (nova linha na planilha de Alocação, atualização do BD "Alocado em um horário", etc.) deve ser **proposta primeiro no terminal** e **aguardar OK explícito do usuário** antes de qualquer edição em planilha. Vale tanto para o `Alocação - Candidatos.csv` quanto para o `BD Candidatos.csv`. Validado em 2026-06-25.
+- **Atenção a datas — não rotular slot de hoje/futuro como "ausência":** ao classificar candidatos como "remarcáveis" ou "ausentes", **sempre comparar com a data de hoje**. Um slot com `Vai?/Presente? = FALSE` só é ausência real se a data do slot já passou. Slots de **hoje** ou **futuro** com FALSE significam apenas "dinâmica ainda não rolou / status ainda não atualizado", NÃO ausência. Validado em 2026-06-25 (eu errei e marquei dinâmicas de 25/06 — hoje — como ausências quando elas só não tinham ocorrido ainda).
+
+## Candidatos REPROVADOS — ignorar sempre
+
+Os candidatos abaixo foram **reprovados na última etapa** (anterior à dinâmica em grupo). Foram **removidos do BD em 2026-06-25** e **não devem ser considerados para nenhuma alocação, contagem ou sugestão**:
+
+- Antonio Bittencourt Correa
+- Arthur Siqueira Paz Teixeira
+- Carlos José Batista da Silva
+- Gabriel Mendes De Lima Chagas
+- Gustavo Faria Takama
+- João Pedro Carvalho dos Santos
+- Marisa Pires Coutinho Machado
+- Rafael Britto Binder
+- Victor Hugo Russo Cordeiro
+- Vítor Fernandes de Carvalho Ambrizzi
+
+Se algum desses nomes aparecer em alguma planilha ou input do usuário, tratar como "fora do processo" — não sugerir para grupo, não contar como pendente.
 
 ## BD Candidatos (pool de candidatos)
 
-**Arquivo de referência:** `Meus-Scripts/Cruzar-Horarios/Alocações de Membros - Dinâmicas em grupo - BD Candidatos.csv`
+**Arquivo de referência (ATUAL):** `Meus-Scripts/Cruzar-Horarios/Alocações de Membros - Dinâmicas em grupo - BD Candidatos (1).csv`
+
+> ⚠️ Mudança em 2026-06-25: o arquivo de referência agora tem sufixo `(1)`. O arquivo antigo (sem sufixo) foi substituído.
+> - O BD (1) tem **141 candidatos** (registros lógicos, considerando que a entrada da Agatha tem mensagem multi-linha), **INCLUINDO os 10 reprovados** — continuar ignorando os 10 reprovados listados acima.
+> - A coluna `Alocado em um horário` está **vazia para todos** no BD atual (não é mantida sincronizada com a planilha de Alocação). **Para descobrir se alguém está alocado, consultar a planilha de Alocação, NÃO esta coluna do BD.**
 
 Esta planilha é o **pool oficial de candidatos**. Todos os nomes listados nela devem ser considerados candidatos do processo.
 
@@ -28,7 +54,9 @@ Esta planilha é o **pool oficial de candidatos**. Todos os nomes listados nela 
 
 ## Planilha de alocação (referência cruzada)
 
-**Arquivo:** `Meus-Scripts/Cruzar-Horarios/Alocações de Membros - Dinâmicas em grupo - Alocação - Candidatos.csv`
+**Arquivo (ATUAL):** `Meus-Scripts/Cruzar-Horarios/Alocações de Membros - Dinâmicas em grupo - Alocação - Candidatos (1).csv`
+
+> ⚠️ Mudança em 2026-06-25: o arquivo de alocação agora tem sufixo `(1)`. O arquivo antigo (sem sufixo) foi substituído.
 
 Cada linha representa uma dinâmica em grupo (`Dia` + `Horario`) com até 5 candidatos (`Candidato 1` a `Candidato 5`). Um candidato está **alocado** quando seu nome aparece em qualquer uma dessas colunas.
 
@@ -99,3 +127,7 @@ Total: **36 candidatos** (de 140 no BD). 104 já estão na planilha de alocaçã
 36. Rayka kamyly da Silva Constancio
 
 > Snapshot gerado em 2026-06-24 a partir do cruzamento BD Candidatos × Alocação - Candidatos (com deduplicação por nome — ver seção "Alocações repetidas"). Pode estar desatualizado se as planilhas mudaram — refazer o cruzamento antes de agir.
+
+## Dinâmicas sugeridas (pendentes de marcação)
+
+*(nenhuma pendente no momento)*

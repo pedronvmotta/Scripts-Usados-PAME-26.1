@@ -1,0 +1,86 @@
+RESUMO 2026-07-03:
+  Total no BD: 141
+  Reprovados: 10
+  Desistentes/eliminados: 8
+  Ativos: 123
+  Presentes (fizeram): 91
+  Pendentes: 32 = 25 com slot + 7 sem slot
+  Dinamicas com >=1 presente: 29
+  Total aparicoes na Alocacao (ativos): 169
+  Alocados unicos (ativos): 119
+
+DUPLICATAS (38 candidatos aparecem em >1 slot):
+  4x - Letícia Portela Oliveira Bem
+  4x - Luiza Gomes dos Reis
+  3x - Camile dos Santos Silva
+  3x - João Pedro Pereira da Silva Santos
+  3x - Lucas Costa Sousa Gomes
+  3x - Maria Eduarda Giordano
+  3x - Miguel Antonio Guimarães de Abreu Lima
+  3x - Nicoly Maia Santos
+  3x - Paola Scalco Perim
+  3x - Pedro passos farias
+  2x - Ana Carolina Lessa Maia
+  2x - Bernardo Borelli Mourelle
+  2x - Eduardo Kina Fernandes
+  2x - Giuliana Olivia Silva de Lima
+  2x - Helena Ayrão Venancio da Silva Franco Quintella Mendes
+  2x - Hugo Nazare Boher e Souza Estrada Alves
+  2x - Isabela Gluck Clemente
+  2x - Isamu Nakandakara Ono
+  2x - João Pedro Mansur Dias Bianco
+  2x - Júlio Kaléo Fernandes Oiticica Santos
+  2x - Kayo Enzo Oliveira da Silva
+  2x - Kim Pimenta Bernardes
+  2x - Larissa Castro de Oliveira
+  2x - Lucas Andrade Silva
+  2x - Lucas Dotto de Oliveira
+  2x - LUIZ HENRIQUE GUERRIERI RZETELNY
+  2x - Luís Filipe Gois Alves das Neves
+  2x - Mateus Pereira Dutra
+  2x - Matheus Brito Tosta da Silva
+  2x - Matheus da Silva Conceição
+  2x - Miguel Crespo Nogueira
+  2x - Murilo Carvalho Gripp
+  2x - Rayka Kamyly da Silva
+  2x - Rodrigo Jales Carneiro da Silva
+  2x - Samara Bruna Wanderley Chagas
+  2x - Sophia Oliveira do Souto
+  2x - Sophia Palmeira Melo
+  2x - Tainá Ribeiro dos Santos
+
+PENDENTES COM SLOT (25):
+  Brenno Chaves dos Santos
+  Breno Almeida Monteiro
+  Camile dos Santos Silva
+  DOUGLAS SANTOS MARQUES FERREIRA
+  Guilherme Rocha Borges
+  Gustavo Assis Carvalho Cota
+  Helena Ayrão Venancio da Silva Franco Quintella Mendes
+  Inara Fernanda dos Santos de Souza
+  João Pedro Mansur Dias Bianco
+  João Pedro Pereira da Silva Santos
+  JÚLIO KALÉO FERNANDES OITICICA SANTOS
+  Kayo Enzo Oliveira da Silva
+  Leonardo de Sá Berbat
+  Letícia Portela Oliveira Bem
+  LUIZ HENRIQUE GUERRIERI RZETELNY
+  Marcelo Lôbo Nogueira Santos
+  Maria Clara Carvalho
+  Matheus da Silva Conceição
+  Matheus Viana Gomes
+  Miguel Antonio Guimarães de Abreu Lima
+  Paola Scalco Perim
+  Rodrigo Ferreira Mies
+  Rodrigo Jales Carneiro da Silva
+  Samara Bruna Wanderley Chagas
+  Sophia Palmeira Melo
+
+PENDENTES SEM SLOT (7):
+  Agatha Marques de Castilho
+  Ana Clara Basilio Portes
+  Caio Nogueira silva costa Chaffin  guedes pereira
+  Kauã de araujo soares godim da silva
+  Lucas Dotto e Oliveira
+  Rayka kamyly da Silva Constancio
+  Vitor Gadelha

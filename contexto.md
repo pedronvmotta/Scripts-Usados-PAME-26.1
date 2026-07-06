@@ -245,3 +245,56 @@ Todos em `Meus-Scripts/Automacao-marcao-dinamicas-final/`:
 - **3 novos desistentes/eliminados** adicionados à lista fora-do-processo: Ana Clara Véras Barros, Gabriel Arcanjo de Moura Costa, Luca Castro de Melo. Total agora: 8 desistentes + 10 reprovados = 18 fora.
 - **Snapshot atualizado contra (6):** 123 ativos, 91 fizeram (74%), 32 pendentes (25 com slot / 7 sem slot), **29 dinâmicas realizadas**.
 - **Progresso vs. sessão anterior:** +4 fizeram (87→91), pendentes caíram de 44 para 32 (parte pelo avanço real, parte pelos 3 eliminados).
+
+## Semana extra de dinâmicas — 07/07, 08/07 e 09/07 de 2026
+
+Devido a imprevistos, foi acrescentada uma **semana extra** de dinâmicas em grupo pra fechar os pendentes que ainda não fizeram. Disponibilidades **coletadas por mensagem direta** (não formulário), então respostas chegaram em formato mais vago — interpretadas contra os slots padrão **11h, 13h, 14h e 15h** e gravadas no Mapeamento (3) em 2026-07-06.
+
+**Gustavo Assis Carvalho Cota** — sinalizou que **não pode em nenhum dia** dessa semana. Não está em nenhum slot 07-09/07.
+
+### Disponibilidades gravadas por slot
+
+**07/07**
+- **11h:** Júlio Kaléo, Matheus da Silva Conceição, Miguel Antonio, Rodrigo Ferreira Mies, Rodrigo Jales, Samara Bruna
+- **13h:** Guilherme Rocha, Júlio Kaléo, Miguel Antonio, Samara Bruna
+- **14h:** Guilherme Rocha, Júlio Kaléo, Miguel Antonio, Samara Bruna
+- **15h:** Guilherme Rocha, Júlio Kaléo, Miguel Antonio, Rodrigo Jales, Samara Bruna
+
+**08/07**
+- **11h:** João Pedro Pereira, Marcelo Lôbo, Matheus da Silva Conceição, Matheus Viana, Miguel Antonio, Rodrigo Jales, Samara Bruna
+- **13h:** João Pedro Pereira, Júlio Kaléo, Marcelo Lôbo, Miguel Antonio, Rodrigo Jales
+- **14h:** Júlio Kaléo, Marcelo Lôbo, Miguel Antonio, Rodrigo Jales
+- **15h:** Júlio Kaléo, Marcelo Lôbo, Miguel Antonio, Rodrigo Jales, Samara Bruna
+
+**09/07**
+- **11h:** Guilherme Rocha, João Pedro Pereira, Júlio Kaléo, Leonardo Berbat, Matheus da Silva Conceição, Matheus Viana, Rayka Kamyly, Rodrigo Ferreira Mies, Rodrigo Jales
+- **13h:** Guilherme Rocha, Júlio Kaléo, Leonardo Berbat, Miguel Antonio, Rayka Kamyly, Rodrigo Jales
+- **14h:** Guilherme Rocha, Júlio Kaléo, Leonardo Berbat, Miguel Antonio, Rayka Kamyly, Rodrigo Jales
+- **15h:** Douglas Santos, Guilherme Rocha, João Pedro Pereira, Júlio Kaléo, Leonardo Berbat, Matheus Viana, Miguel Antonio, Rayka Kamyly, Rodrigo Jales
+
+### Interpretações confirmadas (respostas vagas → slots)
+
+- **João Pedro Pereira — 08/07 "10h às 14h":** entrou em 11h e 13h. Não entrou em 14h (a dinâmica das 14h começa às 14 e ele "sai" nesse horário).
+- **Júlio Kaléo — 08/07 "não pode 10h às 13h":** entrou em 13h (dinâmica começa exatamente às 13). Fora de 11h.
+- **Samara Bruna — 08/07 "não pode 13h às 15h":** entrou em 15h (dinâmica começa exatamente às 15). Fora de 13h e 14h.
+
+Fonte das respostas: mensagens diretas coletadas até 2026-07-06.
+
+### Dinâmicas marcadas para a semana extra (2026-07-06)
+
+Marcadas na `Alocação - Candidatos (6).csv` — 5 dinâmicas cobrindo os 16 candidatos disponíveis até o momento (Gustavo Assis fora):
+
+| Dinâmica | Data / Horário | Candidatos |
+|---|---|---|
+| G1 (4) | 07/07 11h | Rodrigo Ferreira Mies · Rodrigo Jales · Samara Bruna · Helena Ayrão |
+| G2 (4) | 07/07 13h | Guilherme Rocha · Júlio Kaléo · Miguel Antonio · Sophia Palmeira |
+| G3 (4) | 08/07 11h | Marcelo Lôbo · João Pedro Pereira · Matheus Viana · Kayo Enzo |
+| G5 (3) | 09/07 11h | Luiz Henrique Rzetelny · Camile dos Santos Silva · Matheus da Silva Conceição |
+| G4 (3) | 09/07 15h | Douglas Santos · Leonardo Berbat · Rayka Kamyly |
+
+**Segunda leva de respostas (2026-07-06, mais tarde):** +3 candidatos (Luiz Henrique, Camile, Sophia Palmeira). Ajustes feitos:
+- Sophia Palmeira entrou como 4º no G2 (07/07 13h).
+- Matheus da Silva Conceição saiu do G1 e foi pro G5 novo (09/07 11h), pra abrir vaga junto com Luiz e Camile — Camile só tinha 09/07 11h como opção.
+- Sophia disse "13-15h" nos dias 08 e 09: por consistência com a interpretação "disponível até X" ≠ "disponível a partir de X", **excluída de 08/07 15h e 09/07 15h** no Mapeamento (confirmado pelo usuário).
+
+Grupos de 3 justificados: distribuição 16 = 4+3+3+3+3, e Douglas/Camile tinham slot único.

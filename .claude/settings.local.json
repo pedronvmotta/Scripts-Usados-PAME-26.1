@@ -10,7 +10,8 @@
       "Bash(python -X utf8 -c ' *)",
       "Bash(awk -F',' 'NR>1 {print $1}' \"Meus-Scripts/Cruzar-Horarios/Cruzamento de horários - Dinâmicas - Mapeamento.csv\")",
       "Bash(python3 *)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(xxd)"
     ]
   }
 }

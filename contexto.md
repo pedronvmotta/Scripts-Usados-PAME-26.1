@@ -33,16 +33,23 @@ Se algum desses nomes aparecer em alguma planilha ou input do usuário, tratar c
 
 Candidatos que **desistiram voluntariamente ou foram eliminados** no meio do processo (depois da entrada no BD). Tratar igual aos reprovados: **não sugerir para grupo, não contar como pendente**.
 
+- Agatha Marques de Castilho *(2026-07-06)* — eliminada por decisão interna (não respondeu contatos)
+- Ana Clara Basilio Portes *(2026-07-06)* — eliminada por decisão interna (não respondeu contatos)
 - Ana Clara Véras Barros *(2026-07-03)*
 - Franco Aleixo de Moraes *(2026-06-29)*
 - Gabriel Arcanjo de Moura Costa *(2026-07-03)*
+- João Pedro Mansur Dias Bianco *(2026-07-06)*
+- Kauê de Araujo Soares Godim da Silva *(2026-07-06)* — eliminado por decisão interna (não respondeu contatos)
+- Letícia Portela Oliveira Bem *(2026-07-06)* — eliminada por decisão interna (não respondeu contatos)
 - Luca Castro de Melo *(2026-07-03)*
 - Lucas da Silva Rezende *(sinalizado na Alocação — slot 25/06 13h)*
+- Lucas Dotto de Oliveira *(2026-07-06)* — variação de nome no BD ("Lucas Dotto **e** Oliveira") vs Alocação ("Lucas Dotto **de** Oliveira")
 - Lucas Santos Nogueira *(sinalizado na Alocação — slot 26/06 15h)*
 - Natalia Lima de Carvalho *(sinalizado na Alocação — slot 25/06 15h)*
 - Nina Estefan Lima Gomes Costa *(2026-06-29)*
+- Vitor Gadelha *(2026-07-06)* — eliminado por decisão interna (não respondeu contatos)
 
-**Total: 8 fora do processo** (além dos 10 reprovados).
+**Total: 15 fora do processo** (além dos 10 reprovados).
 
 ## BD Candidatos (pool de candidatos)
 
@@ -129,15 +136,15 @@ Candidatos com múltiplas linhas (snapshot 2026-07-03, contra Alocação (6), j�
 |---|---:|---:|
 | Total no BD | 141 | — |
 | Reprovados (ignorados) | 10 | — |
-| Desistentes/eliminados (ignorados) | 8 | — |
-| **Ativos no processo** | **123** | 100% |
-| 🟢 **Fizeram a dinâmica** (`Presente?=TRUE` em I/N/S/X/AC) | **91** | **74%** |
-| 🟡 Alocados, mas ainda NÃO fizeram | **25** | 20% |
-| 🔴 Nem alocados (sem slot) | **7** | 6% |
+| Desistentes/eliminados (ignorados) | 15 | — |
+| **Ativos no processo** | **116** | 100% |
+| 🟢 **Fizeram a dinâmica** (`Presente?=TRUE` em I/N/S/X/AC) | **91** | **78%** |
+| 🟡 Alocados, mas ainda NÃO fizeram | **25** | 22% |
+| 🔴 Nem alocados (sem slot) | **0** | 0% |
 
-Verificação: 91 + 25 + 7 = 123 ✓
+Verificação: 91 + 25 + 0 = 116 ✓
 
-**Total que falta fechar:** 32 candidatos (25 com slot + 7 sem slot).
+**Total que falta fechar:** 25 candidatos (todos com slot). Sem resposta pra semana extra: Brenno Chaves, Inara Fernanda, Paola Scalco (3). Gustavo Assis (1) — declarou que não pode nenhum dia. Os outros 21 estão alocados nos G1-G5.
 **Dinâmicas realizadas** (slots com ≥1 `Presente?=TRUE`): **29**.
 Ignorado no cruzamento: slots de 29/06 (não houve dinâmica nesse dia).
 
@@ -151,18 +158,17 @@ Têm pelo menos 1 slot na Alocação mas nenhuma linha com `Presente?=TRUE` — 
 
 - Brenno Chaves dos Santos
 - Breno Almeida Monteiro
+- Caio Nogueira Silva Costa Chaffin Guedes Pereira
 - Camile dos Santos Silva
 - Douglas Santos Marques Ferreira
 - Guilherme Rocha Borges
 - Gustavo Assis Carvalho Cota
 - Helena Ayrão Venancio da Silva Franco Quintella Mendes
 - Inara Fernanda dos Santos de Souza
-- João Pedro Mansur Dias Bianco
 - João Pedro Pereira da Silva Santos
 - Júlio Kaléo Fernandes Oiticica Santos
 - Kayo Enzo Oliveira da Silva
 - Leonardo de Sá Berbat
-- Letícia Portela Oliveira Bem
 - Luiz Henrique Guerrieri Rzetelny
 - Marcelo Lôbo Nogueira Santos
 - Maria Clara Carvalho
@@ -170,20 +176,15 @@ Têm pelo menos 1 slot na Alocação mas nenhuma linha com `Presente?=TRUE` — 
 - Matheus Viana Gomes
 - Miguel Antonio Guimarães de Abreu Lima
 - Paola Scalco Perim
+- Rayka Kamyly da Silva Constancio
 - Rodrigo Ferreira Mies
 - Rodrigo Jales Carneiro da Silva
 - Samara Bruna Wanderley Chagas
 - Sophia Palmeira Melo
 
-### 🔴 Nem alocados, sem slot (25)
+### 🔴 Nem alocados, sem slot (0)
 
-1. Agatha Marques de Castilho
-2. Ana Clara Basilio Portes
-3. Caio Nogueira Silva Costa Chaffin Guedes Pereira
-4. Kauê de Araujo Soares Godim da Silva
-5. Lucas Dotto e Oliveira
-6. Rayka Kamyly da Silva Constancio
-7. Vitor Gadelha
+*(vazio — todos os antigos 🔴 ou entraram em grupo da semana extra ou foram eliminados por não responder)*
 
 **Notas do cruzamento:**
 - Hoje é **03/07/2026**. Alocação (6) tem slots futuros marcados para 03/07 (11h, 14h, 15h) — vários dos 25 pendentes com slot têm slot nesses horários e o `Presente?=FALSE` pode ser apenas "ainda não rolou".
@@ -282,14 +283,14 @@ Fonte das respostas: mensagens diretas coletadas até 2026-07-06.
 
 ### Dinâmicas marcadas para a semana extra (2026-07-06)
 
-Marcadas na `Alocação - Candidatos (6).csv` — 5 dinâmicas cobrindo os 16 candidatos disponíveis até o momento (Gustavo Assis fora):
+Marcadas na `Alocação - Candidatos (6).csv` — 5 dinâmicas cobrindo 21 candidatos (Gustavo Assis fora):
 
 | Dinâmica | Data / Horário | Candidatos |
 |---|---|---|
-| G1 (4) | 07/07 11h | Rodrigo Ferreira Mies · Rodrigo Jales · Samara Bruna · Helena Ayrão |
+| G1 (5) | 07/07 11h | Rodrigo Ferreira Mies · Rodrigo Jales · Helena Ayrão · Kayo Enzo · Maria Clara Carvalho |
 | G2 (4) | 07/07 13h | Guilherme Rocha · Júlio Kaléo · Miguel Antonio · Sophia Palmeira |
-| G3 (4) | 08/07 11h | Marcelo Lôbo · João Pedro Pereira · Matheus Viana · Kayo Enzo |
-| G5 (3) | 09/07 11h | Luiz Henrique Rzetelny · Camile dos Santos Silva · Matheus da Silva Conceição |
+| G3 (4) | 08/07 11h | Marcelo Lôbo · João Pedro Pereira · Matheus Viana · Breno Almeida |
+| G5 (5) | 09/07 11h | Luiz Henrique Rzetelny · Camile dos Santos Silva · Matheus da Silva Conceição · Caio Chaffin · Samara Bruna |
 | G4 (3) | 09/07 15h | Douglas Santos · Leonardo Berbat · Rayka Kamyly |
 
 **Segunda leva de respostas (2026-07-06, mais tarde):** +3 candidatos (Luiz Henrique, Camile, Sophia Palmeira). Ajustes feitos:
@@ -297,4 +298,4 @@ Marcadas na `Alocação - Candidatos (6).csv` — 5 dinâmicas cobrindo os 16 ca
 - Matheus da Silva Conceição saiu do G1 e foi pro G5 novo (09/07 11h), pra abrir vaga junto com Luiz e Camile — Camile só tinha 09/07 11h como opção.
 - Sophia disse "13-15h" nos dias 08 e 09: por consistência com a interpretação "disponível até X" ≠ "disponível a partir de X", **excluída de 08/07 15h e 09/07 15h** no Mapeamento (confirmado pelo usuário).
 
-Grupos de 3 justificados: distribuição 16 = 4+3+3+3+3, e Douglas/Camile tinham slot único.
+Distribuição atual: 21 = 5+4+4+5+3. Segunda leva incluiu Caio Chaffin (→ G5, 09/07 11h) e Breno Almeida (→ G3, 08/07 11h como 5º) em 2026-07-06 — Breno restrito a esse único slot por preferência dele. Samara Bruna precisou migrar de G1 (07/07 11h) para G5 (09/07 11h) como 5ª também em 2026-07-06. Kayo Enzo movido de G3 → G1 em 2026-07-06 para fechar G1 em 4 e reduzir G3 pra 4 (removendo uma exceção de 5). Maria Clara migrou de G2 → G1 em 2026-07-06 (necessidade dela) — G1 vira 5 (exceção), G2 volta pra 4.

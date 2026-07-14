@@ -1,4 +1,4 @@
-# Contexto Geral — Marcação de Dinâmicas PAME
+# Contexto Geral — Marcação de Etapas do PAME
 
 > **Como usar este arquivo:** é um manual conceitual pra você (Claude novo) entender o domínio do problema sem precisar que o Pedro te explique de novo. Leitura recomendada na ordem:
 > 1. `contexto-geral.md` (este) — **o que é**, **como funciona**, **como agir**.
@@ -11,9 +11,13 @@
 
 ## 1. O que é o projeto
 
-O **PAME** é uma etapa de um processo seletivo (organização "Fluxo", baseada em sala/sede física com "Bloco A" e "salas de cálculo"). A **dinâmica em grupo** é uma das etapas do processo: candidatos pré-aprovados são reunidos em grupos pequenos num slot de horário pra fazer uma sessão presencial avaliada por **membros** (staff).
+O **PAME** é uma etapa de um processo seletivo (organização "Fluxo", baseada em sala/sede física com "Bloco A" e "salas de cálculo"). O processo tem **fases sequenciais**, e minha responsabilidade é ajudar o Pedro a marcar cada uma delas:
 
-**Meu papel (Claude):** ajudar o Pedro a operar a marcação dessas dinâmicas — saber quem ainda precisa ser marcado, sugerir grupos compatíveis com a disponibilidade dos candidatos e dos membros, e atualizar as planilhas que controlam tudo isso. Eu **não tomo decisões sozinho** — sempre proponho e espero OK.
+- **Fase 1 (concluída):** etapas anteriores à dinâmica em grupo — resultaram nos 10 reprovados listados em `contexto.md`.
+- **Fase 2 (concluída em ~07/2026):** **Dinâmica em grupo** — candidatos pré-aprovados reunidos em grupos pequenos num slot de horário pra sessão presencial avaliada por **membros** (staff).
+- **Fase 3 (ATUAL, iniciada em 2026-07-14):** **Entrevista com Coordenador (Coordena)** — entrevista **individual 1x1** entre candidato e o Coordenador da sua coordenação. Ver seção 10 abaixo.
+
+**Meu papel (Claude):** ajudar o Pedro a operar a marcação dessas etapas — saber quem ainda precisa ser marcado, sugerir pares/grupos compatíveis com a disponibilidade, e atualizar as planilhas que controlam tudo isso. Eu **não tomo decisões sozinho** — sempre proponho e espero OK.
 
 ---
 
@@ -145,7 +149,77 @@ Sequência sugerida quando você (Claude) entrar nesse projeto pela primeira vez
 
 ---
 
-## 9. Divisão de responsabilidade entre os arquivos de contexto
+## 9. Fase 3 — Entrevista com Coordenador (Coordena)
+
+Iniciada em **2026-07-14**. Formato **1x1 (individual)** — cada slot casa **1 candidato ↔ 1 Coordena**.
+
+### Estrutura da Fluxo — 5 Coordenações
+
+A Fluxo é dividida em **5 Coordenações**:
+
+| Sigla | Coordenação |
+|---|---|
+| ACE | (área ACE) |
+| CCE | (área CCE) |
+| MNP | (área MNP) |
+| PRO | (área PRO) |
+| QAB | (área QAB) |
+
+Cada Coordena é responsável exclusivamente por sua área. **PRO e QAB têm 2 Coordenas cada**; as outras 3 áreas têm 1 Coordena.
+
+### Regra dura de matching (não negociável)
+
+**Um candidato da coordenação X só pode ser entrevistado pelo Coordena da coordenação X — sem exceções.** Isso vale para todas as 5 áreas. Não existe cross-área nem "fallback pra outro Coordena".
+
+### Equalização de carga em PRO e QAB
+
+Nas 2 áreas com 2 Coordenas cada, distribuir os candidatos de forma **equilibrada** entre os dois — diferença ideal 0 ou 1. Só admitir desequilíbrio maior se a disponibilidade de horários forçar.
+
+### Fluxo dos dados (Fase 3)
+
+```
+Form dos CANDIDATOS (coluna D = coordenação de interesse)
+    │
+Form dos COORDENAS (coluna D = coordenação que ele/ela coordena)
+    │
+    ▼
+CSVs em Meus-Scripts/Automacao-Marcacao-Entrevista-Coordenadores/
+    │
+    ▼
+[Eu cruzo: candidatos × coordenas, respeitando área + disponibilidade]
+    │
+    ▼
+Proposta de par (candidato + coordena + slot) no terminal
+    │
+    ▼  (OK do Pedro)
+Atualização da planilha de marcação (a definir com o usuário)
+```
+
+### Arquivos (paths atuais em `contexto.md`, seção "Arquivos — Fase 3")
+
+- `E.C Candidatos - disponibilidade  (respostas) - Respostas ao formulário 1.csv` — respostas dos candidatos.
+- `Coordenas - disponibilidade (respostas) - Respostas ao formulário 1.csv` — respostas dos coordenadores.
+
+Estrutura das colunas dos dois CSVs (idêntica):
+
+| Coluna | Conteúdo |
+|---|---|
+| A | Carimbo de data/hora |
+| B | Nome |
+| C | Email |
+| **D** | **Coordenação (ACE/CCE/MNP/PRO/QAB)** |
+| E–P | Disponibilidade por dia (14/07 até 29/07) — texto tipo "10h, 11h, 13h" ou "Não tenho disponibilidade nenhum horário" |
+
+### Regras herdadas da Fase 2 que continuam valendo
+
+- Nunca marcar sem proposta no terminal + OK do Pedro.
+- Deduplicar candidatos por nome (mesma pessoa às vezes responde o form 2x).
+- Filtrar reprovados/desistentes (`contexto.md`) antes de considerar candidato.
+- Sempre listar alternativas ao propor um par.
+
+---
+
+## 10. Divisão de responsabilidade entre os arquivos de contexto
 
 | Tipo de info | Arquivo |
 |---|---|

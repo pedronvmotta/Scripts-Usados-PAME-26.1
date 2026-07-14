@@ -1,5 +1,66 @@
 # Contexto do Projeto PAME
 
+## Fase atual — Fase 3: Entrevista com Coordenador (a partir de 2026-07-14)
+
+O PAME entrou na **Fase 3: Entrevista com Coordenador (Coordena)**. Formato **1x1 (individual)** — 1 candidato ↔ 1 Coordena por slot. Descrição conceitual detalhada em `contexto-geral.md` § 9.
+
+### Estrutura Fluxo — 5 Coordenações
+
+**ACE, CCE, MNP, PRO, QAB**. PRO e QAB têm **2 Coordenas** cada; as outras 3 têm 1.
+
+### Regra dura (não negociável)
+
+**Candidato da coordenação X SÓ pode, sem exceções, ser entrevistado pelo Coordena da coordenação X.** Não fazer cross-área nem sugerir fallback.
+
+### Equalização em PRO e QAB
+
+Distribuir entrevistas equilibradamente entre os 2 Coordenas da mesma área — diferença ideal 0 ou 1. Só desbalancear se disponibilidade forçar.
+
+### Arquivos — Fase 3
+
+Todos em `Meus-Scripts/Automacao-Marcacao-Entrevista-Coordenadores/`:
+
+| Arquivo | Conteúdo |
+|---|---|
+| `E.C Candidatos - disponibilidade  (respostas) - Respostas ao formulário 1.csv` | Respostas dos candidatos. Coluna D = coordenação de interesse. Colunas E–P = disponibilidade dia a dia (14/07 a 29/07). |
+| `Coordenas - disponibilidade (respostas) - Respostas ao formulário 1.csv` | Respostas dos Coordenas. Coluna D = coordenação que coordenam. Colunas E–P = disponibilidade dia a dia. |
+
+Schema idêntico nos 2 arquivos: `Carimbo`, `Nome`, `Email`, `Coordenação`, 12 colunas de dias (14/07, 15/07, 16/07, 17/07, 20/07, 21/07, 22/07, 23/07, 24/07, 27/07, 28/07, 29/07). Horários possíveis por dia: 10h, 11h, 13h, 14h, 15h, 16h, 17h.
+
+### Snapshot 2026-07-14 — Coordenas ativos
+
+| Área | Coordenas que responderam |
+|---|---|
+| ACE | Pedro de Souza |
+| CCE | Gabriel Santos |
+| **MNP** | ⚠️ **NENHUM ainda** — bloqueia os candidatos MNP até resolver |
+| PRO | Lucas Angelo, Vitor Malfa |
+| QAB | Gabriela D'Agostini, Maria Clara Menegoy |
+
+### Snapshot 2026-07-14 — Candidatos por coordenação (dedup por email)
+
+Total: **42 candidatos únicos** (45 linhas − 3 respostas duplicadas: Ana Carolina Lessa Maia, Luísa Leal Ávila, Mirella Reis, Marcelo Lôbo com 2 respostas).
+
+| Área | Qtd | Candidatos |
+|---|---:|---|
+| ACE | 7 | Michel Leandro Machado, Francisco Oliveira Navarro, Ana Carolina Lessa Maia, Helena Ayrão, Tiago Medalha Mouro Pazos, Enrico Almeida Machado Dias de Souza, Adriana Rodrigues dos Santos da Cruz |
+| CCE | 13 | Tainá Ribeiro dos Santos, Antonio Gaida Coutinho Marques, Felipe Onoda Pessanha Bianchi, Henrique de Noronha Souto, Arthur Gonsales Cadengue, Mateus Pereira Dutra, Eduardo Augusto Pinto Martins, Hugo Nazare Boher e Souza Estrada Alves, Matheus da Silva Conceição, Olivia Jiale Xiao, Matheus Henriques Lara Resende, Matheus Viana Gomes, Sarah Siqueira de Paiva |
+| **MNP** | 8 | João Pedro de Carvalho Urquiza, Mirella da Silva Reis, Arthur Yuan da Costa, Miguel Antonio Guimarães de Abreu Lima, Flávio Magyar Ortolan Pereira, Gabriel Torres dos Anjos, Marcelo Lôbo Nogueira Santos, Luís Filipe Gois Alves das Neves |
+| PRO | 9 | Luísa Leal Ávila, Ana Carolina Rodrigues Correia da Silva, Maria Fernanda Castello Branco Pereira, Bernardo Borelli Mourelle, Giuliana Olivia Silva de Lima, Júlio Kaléo Fernandes Oiticica Santos, Luiz Henrique Guerrieri Rzetelny, Nicoly Maia Santos, Felipe Figueiras Nahid Pereira |
+| QAB | 5 | Anna Julia dos Santos Vieira, Rayka Kamyly da Silva Constancio, Samuel Mendonça Ferreira, Mariana Ferreira Rodrigues Peixoto, Stella Daniel Breitinger |
+
+> ⚠️ Os 8 candidatos de MNP não têm Coordena para entrevista enquanto o formulário do Coordena MNP não for respondido.
+
+### Onde marcar a Fase 3
+
+Existe planilha oficial de marcação — o Pedro vai mandar. **Aguardar antes de propor edições.** Os candidatos MNP ficam pendentes até o Coordena de MNP responder o form (decisão de 2026-07-14: seguir marcando as outras 4 áreas primeiro).
+
+### Duração do slot (Fase 3)
+
+Cada slot horário (10h, 11h, 13h, 14h, 15h, 16h, 17h) comporta **1 entrevista 1x1 por Coordena**. Um mesmo Coordena pode fazer várias entrevistas no mesmo dia em slots diferentes, mas nunca 2 no mesmo horário.
+
+---
+
 ## Regras de montagem de grupo
 
 - **Tamanho preferencial:** 4 candidatos por dinâmica.

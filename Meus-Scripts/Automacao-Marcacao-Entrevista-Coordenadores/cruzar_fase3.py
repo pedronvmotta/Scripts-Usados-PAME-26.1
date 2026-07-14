@@ -21,7 +21,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 BASE = Path(__file__).parent
 CAND_FILE = BASE / "E.C Candidatos - disponibilidade  (respostas) - Respostas ao formulário 1.csv"
-COORD_FILE = BASE / "Coordenas - disponibilidade (respostas) - Respostas ao formulário 1.csv"
+COORD_FILE = BASE / "Coordenas - disponibilidade (respostas) - Respostas ao formulário 1 (1).csv"
 
 DIAS = ["14/07","15/07","16/07","17/07","20/07","21/07","22/07","23/07","24/07","27/07","28/07","29/07"]
 HORARIOS = ["10h","11h","13h","14h","15h","16h","17h"]
@@ -132,7 +132,7 @@ def alternativas(cand, coords, escolhida, limite=5):
 
 # ---- Executa ----
 faltando_por_area = {}
-for area in ["ACE", "CCE", "PRO", "QAB"]:
+for area in ["ACE", "CCE", "MNP", "PRO", "QAB"]:
     faltando_por_area[area] = alocar_area(area)
 
 # ---- Imprime ----
@@ -141,7 +141,7 @@ print("PROPOSTA DE MARCAÇÃO — FASE 3 (Entrevista com Coordena)")
 print("Data de hoje: 14/07/2026 (dia 14/07 pulado no cruzamento — usar apenas 15/07 em diante)")
 print("=" * 90)
 
-for area in ["ACE", "CCE", "PRO", "QAB"]:
+for area in ["ACE", "CCE", "MNP", "PRO", "QAB"]:
     coords = coord_by_area[area]
     cands = cand_by_area[area]
     print(f"\n{'─'*90}")
@@ -172,7 +172,7 @@ print("\n" + "=" * 90)
 print("ALTERNATIVAS por candidato (outros slots que também servem)")
 print("=" * 90)
 
-for area in ["ACE", "CCE", "PRO", "QAB"]:
+for area in ["ACE", "CCE", "MNP", "PRO", "QAB"]:
     coords = coord_by_area[area]
     coord_nomes = {co["nome"] for co in coords}
     print(f"\n── {area} ──")
@@ -203,9 +203,8 @@ for (co_nome, dia, h), cand_nome in todas:
     area = area_do_cand.get(cand_nome, "?")
     print(f"{dia:<8}{h:<6}{area:<6}{co_nome:<22}{cand_nome}")
 
-# ---- MNP pendentes ----
+# ---- Resumo final ----
 print("\n" + "=" * 90)
-print(f"MNP — {len(cand_by_area['MNP'])} candidatos pendentes (sem Coordena de MNP no form ainda):")
-for c in cand_by_area["MNP"]:
-    print(f"  · {c['nome']}")
+total = sum(1 for _ in alocacao)
+print(f"TOTAL marcado: {total} entrevistas")
 print("=" * 90)

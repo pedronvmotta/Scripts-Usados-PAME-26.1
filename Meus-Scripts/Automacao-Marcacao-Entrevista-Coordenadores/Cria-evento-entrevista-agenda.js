@@ -60,6 +60,8 @@ function envioAgendaEntrevistas() {
     const candidatoCoord = values[i][9];   // J
     const validation     = values[i][10];  // K
     const exists         = values[i][11];  // L
+    const linkDoAnexo = "https://docs.google.com/spreadsheets/d/1hkuq8cE7vt1Luh3y0wT6mEjkcmyDn-uqOd1trWSIE0Y/edit?gid=342694246#gid=342694246"
+    const linkDoCase = "https://docs.google.com/document/d/1ZslWEw4cMyl_yNJ99FctMT8Ns9yzJKiCaygQaxjO68g/edit?usp=sharing"
 
     if (validation == "Atualizar"){
       if (dia === "" || hora === "" || candidatoNome === "" || coordenaEmail === ""){
@@ -79,7 +81,8 @@ function envioAgendaEntrevistas() {
         (observadorNome ? "Observador(a): " + observadorNome + " (" + observadorEmail + ")\n" : "") +
         "\nCandidato(a): " + candidatoNome + "\n" +
         "Numero: " + candidatoNum + "\n" +
-        "Coordenacao de interesse: " + candidatoCoord + "\n\n"
+        "Coordenacao de interesse: " + candidatoCoord + "\n\n" + `Roteiro da dinâmica: ${linkDoAnexo}` + "\n\n"
+        + `Case base da entrevista: ${linkDoCase}`;
 
       const tituloEvento = "Entrevista com Coordena - PAME ";
 

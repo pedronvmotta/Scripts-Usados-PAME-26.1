@@ -1,6 +1,9 @@
 // Adaptacao do Cria-evento-na-agenda.js para a Fase 3 (Entrevista com Coordena, 1x1).
 // Roda em cima da aba "Horarios" da planilha "Entrevistas com Coordena - Alocacoes".
 //
+// REQUISITO: ativar o servico avancado "Google Calendar API" no editor de Apps Script
+// (Servicos + -> Google Calendar API). Isso libera o objeto global `Calendar`.
+//
 // Colunas esperadas (linhas 1-3 sao cabecalho, dados a partir da linha 4):
 //   B  Dia
 //   C  Horario
@@ -16,6 +19,10 @@
 //   M  Mensagem enviada
 //   N  Candidato confirmado
 //   O  Entrevista ocorreu
+//   P  Candidato - Email   (novo - usado para adicionar o candidato como convidado)
+
+const CAL_ID = "8eb0b6a9bea03527a7b8070510d4cc3c9aa941a577a598d599dc84f8e2e0796d@group.calendar.google.com";
+const TZ = "America/Sao_Paulo";
 
 function onOpen(e){
   const ui = SpreadsheetApp.getUi();
@@ -23,7 +30,7 @@ function onOpen(e){
 }
 
 function combinarDataHora(data, hora) {
-  const dataFinal = new Date(
+  return new Date(
     data.getFullYear(),
     data.getMonth(),
     data.getDate(),
@@ -31,21 +38,14 @@ function combinarDataHora(data, hora) {
     hora.getMinutes(),
     hora.getSeconds()
   );
-  return dataFinal;
 }
 
 function envioAgendaEntrevistas() {
   const sheet = SpreadsheetApp.getActive().getSheetByName("Horários");
-  const calendar = CalendarApp.getCalendarById("8eb0b6a9bea03527a7b8070510d4cc3c9aa941a577a598d599dc84f8e2e0796d@group.calendar.google.com");
-
-  if (!calendar) {
-    SpreadsheetApp.getUi().alert("Erro: Não foi possível acessar a agenda. Verifique o ID ou permissões.");
-    return;
-  }
-
-  // Link do roteiro da entrevista (trocar depois se tiver um documento proprio)
-
   const values = sheet.getDataRange().getValues();
+
+  const linkDoAnexo = "https://docs.google.com/spreadsheets/d/1hkuq8cE7vt1Luh3y0wT6mEjkcmyDn-uqOd1trWSIE0Y/edit?gid=342694246#gid=342694246";
+  const linkDoCase  = "https://docs.google.com/document/d/1ZslWEw4cMyl_yNJ99FctMT8Ns9yzJKiCaygQaxjO68g/edit?usp=sharing";
 
   // Linhas 1-3 sao cabecalho, dados comecam em i=3 (linha 4).
   for (let i = 3; i < values.length; i++){
@@ -60,83 +60,86 @@ function envioAgendaEntrevistas() {
     const candidatoCoord = values[i][9];   // J
     const validation     = values[i][10];  // K
     const exists         = values[i][11];  // L
-    const linkDoAnexo = "https://docs.google.com/spreadsheets/d/1hkuq8cE7vt1Luh3y0wT6mEjkcmyDn-uqOd1trWSIE0Y/edit?gid=342694246#gid=342694246"
-    const linkDoCase = "https://docs.google.com/document/d/1ZslWEw4cMyl_yNJ99FctMT8Ns9yzJKiCaygQaxjO68g/edit?usp=sharing"
+    const candidatoEmail = values[i][15];  // P
 
-    if (validation == "Atualizar"){
+    if (validation === "Atualizar"){
       if (dia === "" || hora === "" || candidatoNome === "" || coordenaEmail === ""){
         Logger.log("Linha " + (i+1) + " incompleta - pulando.");
         continue;
       }
 
       const dateI = combinarDataHora(dia, hora);
-      const dateF = new Date(dateI.getTime() + 60*60*1000); // 1h de duracao
+      const dateF = new Date(dateI.getTime() + 60*60*1000); // 1h
 
-      // Guests: Coordena obrigatorio; Observador se preenchido.
-      const guestsArr = [coordenaEmail];
-      if (observadorEmail && observadorEmail !== "") guestsArr.push(observadorEmail);
-      const listaConvidados = guestsArr.join(",");
+      const attendees = [{ email: coordenaEmail }];
+      if (observadorEmail) attendees.push({ email: observadorEmail });
+      if (candidatoEmail)  attendees.push({ email: candidatoEmail });
 
-      const txtDescricao =
+      const descricao =
         (observadorNome ? "Observador(a): " + observadorNome + " (" + observadorEmail + ")\n" : "") +
         "\nCandidato(a): " + candidatoNome + "\n" +
         "Numero: " + candidatoNum + "\n" +
-        "Coordenacao de interesse: " + candidatoCoord + "\n\n" + `Roteiro da dinâmica: ${linkDoAnexo}` + "\n\n"
-        + `Case base da entrevista: ${linkDoCase}`;
+        "Coordenacao de interesse: " + candidatoCoord + "\n\n" +
+        "Roteiro da dinamica: " + linkDoAnexo + "\n\n" +
+        "Case base da entrevista: " + linkDoCase;
 
-      const tituloEvento = "Entrevista com Coordena - PAME ";
+      const titulo = "Entrevista com Coordena - PAME";
+
+      const eventBody = {
+        summary: titulo,
+        description: descricao,
+        start: { dateTime: dateI.toISOString(), timeZone: TZ },
+        end:   { dateTime: dateF.toISOString(), timeZone: TZ },
+        attendees: attendees,
+        guestsCanSeeOtherGuests: true,
+        guestsCanInviteOthers: false
+      };
 
       let event;
-      let eventAltered = false;
+      let atualizou = false;
 
-      // Se ja existe um ID, tenta atualizar em vez de criar novo.
-      if (exists != ""){
+      if (exists){
         try {
-          event = calendar.getEventById(exists);
-          if (event){
-            event.setTitle(tituloEvento);
-            event.setTime(dateI, dateF);
-            event.setDescription(txtDescricao);
-            eventAltered = true;
+          const existente = Calendar.Events.get(CAL_ID, exists);
+          if (existente){
+            // patch preserva conferenceData (Meet nao e recriado).
+            event = Calendar.Events.patch(eventBody, CAL_ID, exists, { sendUpdates: "all" });
+            atualizou = true;
             Logger.log("Evento atualizado: " + candidatoNome);
           }
-        } catch(e){
-          Logger.log("Falha ao atualizar (linha " + (i+1) + "). Criando novo...");
+        } catch(err){
+          Logger.log("Falha ao atualizar (linha " + (i+1) + "): " + err + " - criando novo...");
         }
       }
 
-      if (!eventAltered){
-        event = calendar.createEvent(
-          tituloEvento,
-          dateI,
-          dateF,
-          {
-            description: txtDescricao,
-            guests: listaConvidados
+      if (!atualizou){
+        // Cria evento novo ja com Meet.
+        eventBody.conferenceData = {
+          createRequest: {
+            requestId: Utilities.getUuid(),
+            conferenceSolutionKey: { type: "hangoutsMeet" }
           }
-        );
-        sheet.getRange(i+1, 12).setValue(event.getId()); // coluna L (ID do evento)
-        Logger.log("Novo evento criado: " + candidatoNome);
+        };
+        event = Calendar.Events.insert(eventBody, CAL_ID, {
+          conferenceDataVersion: 1,
+          sendUpdates: "all"
+        });
+        sheet.getRange(i+1, 12).setValue(event.id); // coluna L
+        Logger.log("Novo evento criado: " + candidatoNome + " (Meet: " + (event.hangoutLink || "-") + ")");
       }
 
-      sheet.getRange(i+1, 11).setValue("Atualizado"); // coluna K (Status)
+      sheet.getRange(i+1, 11).setValue("Atualizado"); // coluna K
     }
 
-    else if (validation == "Deletar"){
-      if (exists != ''){
+    else if (validation === "Deletar"){
+      if (exists){
         try {
-          const eventOld = calendar.getEventById(exists);
-          if (eventOld){
-            eventOld.deleteEvent();
-          }
-        } catch(e){
-          Logger.log("Evento ja nao existia na agenda (linha " + (i+1) + ")");
+          Calendar.Events.remove(CAL_ID, exists, { sendUpdates: "all" });
+        } catch(err){
+          Logger.log("Evento ja nao existia na agenda (linha " + (i+1) + "): " + err);
         }
-
-        sheet.getRange(i+1, 12).setValue(""); // limpa ID do evento
+        sheet.getRange(i+1, 12).setValue(""); // limpa ID
         sheet.getRange(i+1, 11).setValue(""); // limpa Status
-        // Nao apago Coordena / Observador / Candidato aqui - se quiser reaproveitar a linha,
-        // basta reeditar e mudar Status para "Atualizar".
       }
     }
   }

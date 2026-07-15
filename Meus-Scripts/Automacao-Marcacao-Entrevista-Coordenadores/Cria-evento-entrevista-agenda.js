@@ -1,8 +1,19 @@
 // Adaptacao do Cria-evento-na-agenda.js para a Fase 3 (Entrevista com Coordena, 1x1).
 // Roda em cima da aba "Horarios" da planilha "Entrevistas com Coordena - Alocacoes".
 //
-// REQUISITO: ativar o servico avancado "Google Calendar API" no editor de Apps Script
-// (Servicos + -> Google Calendar API). Isso libera o objeto global `Calendar`.
+// REQUISITOS:
+// 1) Ativar o servico avancado "Google Calendar API" no editor (Servicos + -> Google Calendar API).
+// 2) Editar o manifesto appsscript.json (Configuracoes do projeto -> marcar
+//    "Mostrar arquivo de manifesto appsscript.json") e incluir os oauthScopes
+//    do arquivo appsscript.json que acompanha este script. O escopo novo e:
+//      https://www.googleapis.com/auth/meetings.space.settings
+//    Ele permite editar a configuracao do Meet (accessType) via Meet REST API.
+//    Na proxima execucao o script vai pedir re-autorizacao.
+//
+// O QUE MUDOU: depois de criar/atualizar o evento, o script chama a Meet REST API
+// e seta accessType = OPEN no espaco do Meet. Com isso QUALQUER pessoa com o link
+// entra direto, sem precisar "pedir para participar" e sem depender de alguem
+// com conta Poli/UFRJ aceitar. Nao precisa nem estar logado numa conta Google.
 //
 // Colunas esperadas (linhas 1-3 sao cabecalho, dados a partir da linha 4):
 //   B  Dia
@@ -19,14 +30,20 @@
 //   M  Mensagem enviada
 //   N  Candidato confirmado
 //   O  Entrevista ocorreu
-//   P  Candidato - Email   (novo - usado para adicionar o candidato como convidado)
+//   P  Candidato - Email   (usado para adicionar o candidato como convidado)
 
 const CAL_ID = "8eb0b6a9bea03527a7b8070510d4cc3c9aa941a577a598d599dc84f8e2e0796d@group.calendar.google.com";
 const TZ = "America/Sao_Paulo";
 
 function onOpen(e){
-  const ui = SpreadsheetApp.getUi();
-  ui.createMenu("Agenda").addItem("Jogar entrevistas na agenda","envioAgendaEntrevistas").addToUi();
+  try {
+    SpreadsheetApp.getUi()
+      .createMenu("Agenda")
+      .addItem("Jogar entrevistas na agenda","envioAgendaEntrevistas")
+      .addToUi();
+  } catch(err){
+    Logger.log("onOpen sem UI disponivel: " + err);
+  }
 }
 
 function combinarDataHora(data, hora) {
@@ -38,6 +55,71 @@ function combinarDataHora(data, hora) {
     hora.getMinutes(),
     hora.getSeconds()
   );
+}
+
+// Extrai o codigo do Meet (ex: "abc-defg-hij") do evento.
+// Logo apos o insert, o conferenceData pode demorar 1-2s pra consolidar,
+// entao tem um retry com Events.get.
+function obterMeetCode(event){
+  let code = event && event.conferenceData && event.conferenceData.conferenceId;
+  if (!code && event && event.id){
+    Utilities.sleep(2000);
+    try {
+      const ev = Calendar.Events.get(CAL_ID, event.id);
+      code = ev.conferenceData && ev.conferenceData.conferenceId;
+    } catch(err){
+      Logger.log("Nao consegui reler o evento pra pegar o Meet code: " + err);
+    }
+  }
+  return code || "";
+}
+
+// Abre o acesso do Meet: accessType OPEN = qualquer pessoa com o link entra
+// sem "knocking" (sem pedir para participar), independente de conta Google.
+function abrirAcessoMeet(meetCode, linha){
+  if (!meetCode){
+    Logger.log("Linha " + linha + ": sem Meet code, acesso nao alterado.");
+    return;
+  }
+
+  const token = ScriptApp.getOAuthToken();
+  const headers = { Authorization: "Bearer " + token };
+
+  // 1) GET pra resolver o nome canonico do space (spaces/{meetingCode} e um alias valido no GET)
+  const getResp = UrlFetchApp.fetch(
+    "https://meet.googleapis.com/v2/spaces/" + meetCode + "?fields=name,config",
+    { headers: headers, muteHttpExceptions: true }
+  );
+  if (getResp.getResponseCode() !== 200){
+    Logger.log("Linha " + linha + ": Meet GET falhou (" + getResp.getResponseCode() + "): " + getResp.getContentText());
+    return;
+  }
+
+  const space = JSON.parse(getResp.getContentText());
+  if (space.config && space.config.accessType === "OPEN"){
+    return; // ja esta aberto, nada a fazer
+  }
+
+  // 2) PATCH no accessType
+  const patchResp = UrlFetchApp.fetch(
+    "https://meet.googleapis.com/v2/" + space.name + "?updateMask=config.accessType,config.entryPointAccess",
+    {
+      method: "patch",
+      contentType: "application/json",
+      headers: headers,
+      payload: JSON.stringify({
+        config: { accessType: "OPEN", entryPointAccess: "ALL" }
+      }),
+      muteHttpExceptions: true
+    }
+  );
+
+  if (patchResp.getResponseCode() === 200){
+    Logger.log("Linha " + linha + ": Meet " + meetCode + " aberto (accessType = OPEN).");
+  } else {
+    // 403 aqui geralmente = politica do admin do Workspace bloqueando acesso aberto
+    Logger.log("Linha " + linha + ": Meet PATCH falhou (" + patchResp.getResponseCode() + "): " + patchResp.getContentText());
+  }
 }
 
 function envioAgendaEntrevistas() {
@@ -127,6 +209,9 @@ function envioAgendaEntrevistas() {
         sheet.getRange(i+1, 12).setValue(event.id); // coluna L
         Logger.log("Novo evento criado: " + candidatoNome + " (Meet: " + (event.hangoutLink || "-") + ")");
       }
+
+      // Abre o Meet pra qualquer pessoa com o link (sem "pedir para participar").
+      abrirAcessoMeet(obterMeetCode(event), i+1);
 
       sheet.getRange(i+1, 11).setValue("Atualizado"); // coluna K
     }

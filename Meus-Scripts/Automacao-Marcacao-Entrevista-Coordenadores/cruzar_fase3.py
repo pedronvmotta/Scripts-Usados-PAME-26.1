@@ -25,7 +25,7 @@ COORD_FILE = BASE / "Coordenas - disponibilidade (respostas) - Respostas ao form
 
 DIAS = ["14/07","15/07","16/07","17/07","20/07","21/07","22/07","23/07","24/07","27/07","28/07","29/07"]
 HORARIOS = ["10h","11h","13h","14h","15h","16h","17h"]
-PULAR_DIAS = {"14/07"}  # hoje - deixar de fora
+PULAR_DIAS = {"14/07", "15/07"}  # hoje é 15/07 - marcar de 16/07 em diante
 
 NO_AVAIL = "Não tenho disponibilidade nenhum horário"
 
@@ -138,7 +138,7 @@ for area in ["ACE", "CCE", "MNP", "PRO", "QAB"]:
 # ---- Imprime ----
 print("=" * 90)
 print("PROPOSTA DE MARCAÇÃO — FASE 3 (Entrevista com Coordena)")
-print("Data de hoje: 14/07/2026 (dia 14/07 pulado no cruzamento — usar apenas 15/07 em diante)")
+print("Data de hoje: 15/07/2026 (14/07 e 15/07 pulados — marcações a partir de 16/07)")
 print("=" * 90)
 
 for area in ["ACE", "CCE", "MNP", "PRO", "QAB"]:

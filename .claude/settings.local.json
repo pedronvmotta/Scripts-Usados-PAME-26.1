@@ -12,7 +12,8 @@
       "Bash(python3 *)",
       "Bash(python *)",
       "Bash(xxd)",
-      "Bash(awk *)"
+      "Bash(awk *)",
+      "Bash(rm *)"
     ]
   }
 }
